@@ -9,15 +9,17 @@ const PRODUCTS_DATA = {
     },
     "Moshe 3000 Green": {
         "type": "standard",
-        "base_rendimento_min_m2_per_L_per_coat": 10,
-        "base_rendimento_max_m2_per_L_per_coat": 12,
+        // Rendimento atualizado para 7.8 m²/L por demão
+        "base_rendimento_min_m2_per_L_per_coat": 7.8,
+        "base_rendimento_max_m2_per_L_per_coat": 7.8, // Usando o mesmo valor para rendimento fixo
         "demao_options": [2, 3],
         "bucket_size_L": 18
     },
     "Moshe 3000 Flex Metal": {
         "type": "standard",
-        "base_rendimento_min_m2_per_L_per_coat": 10,
-        "base_rendimento_max_m2_per_L_per_coat": 12,
+        // Rendimento atualizado para 3.45 m²/L por demão
+        "base_rendimento_min_m2_per_L_per_coat": 3.45,
+        "base_rendimento_max_m2_per_L_per_coat": 3.45, // Usando o mesmo valor para rendimento fixo
         "demao_options": [2, 3],
         "bucket_size_L": 18
     },
@@ -105,11 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         input.name = 'rendimento_variation';
                         input.value = value;
                         input.id = `rendimento-${value.toString().replace('.', '-')}`; // Cria um ID único
-                        if (label.includes('Média Absorção') || label.includes('Média')) { // Seleciona "Média Absorção" por padrão
+                         if (label.includes('Média Absorção') || label.includes('Média')) { // Seleciona "Média Absorção" por padrão
                             input.checked = true;
                         } else if (!document.querySelector('input[name="rendimento_variation"]:checked')) { // Se não houver "Média Absorção", seleciona a primeira
                              input.checked = true;
                         }
+
 
                         const labelElement = document.createElement('label');
                         labelElement.htmlFor = `rendimento-${value.toString().replace('.', '-')}`;
@@ -155,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (productData.type === 'standard') {
             // Para produtos "standard", usa a média do rendimento min/max por demão
+            // Como agora min e max são iguais para Green e Metal, o rendimento será o valor fixo
             rendimentoM2PerL = (productData.base_rendimento_min_m2_per_L_per_coat + productData.base_rendimento_max_m2_per_L_per_coat) / 2;
         } else if (productData.type === 'variation_rendimento') {
             // Para produtos com variação de rendimento, obtém o valor selecionado pelo rádio button
@@ -173,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsDiv.style.display = 'block';
             return;
         }
+
 
         // Calcula o total de litros necessários
         const totalLiters = (area / rendimentoM2PerL) * selectedDemaoCount;
