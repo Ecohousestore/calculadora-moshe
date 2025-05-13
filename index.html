@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Consumo Moshe 3000</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Calculadora de Consumo Moshe 3000</h1>
+
+        <div class="form-group">
+            <label for="product">Produto:</label>
+            <select id="product">
+                <option value="">Selecione um produto</option>
+                <option value="Moshe 3000 Flex">Moshe 3000 Flex</option>
+                <option value="Moshe 3000 Green">Moshe 3000 Green</option>
+                <option value="Moshe 3000 Flex Metal">Moshe 3000 Flex Metal</option>
+                <option value="Moshe 3000 Repel">Moshe 3000 Repel</option>
+                <option value="Moshe 3000 Wood">Moshe 3000 Wood</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="area">Área (m²):</label>
+            <input type="number" id="area" min="1" placeholder="Ex: 50">
+        </div>
+
+        <div id="application-variations" class="form-group">
+            </div>
+
+        <button id="calculate-btn">Calcular Consumo</button>
+
+        <div id="results" class="results">
+            </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
